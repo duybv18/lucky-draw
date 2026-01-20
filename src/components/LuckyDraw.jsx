@@ -2,6 +2,9 @@ import { useState, useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import confetti from 'canvas-confetti';
 import './LuckyDraw.css';
+import backgroundMp3 from '/audio/background.mp3';
+import clap from '/audio/clap.mp3';
+
 
 const LuckyDraw = () => {
   const CELL_HEIGHT = 120;
@@ -77,7 +80,7 @@ const LuckyDraw = () => {
     backgroundAudioRef.current = new Audio();
     backgroundAudioRef.current.loop = true;
     backgroundAudioRef.current.volume = 0.5;
-    backgroundAudioRef.current.src = '/audio/background.mp3';
+    backgroundAudioRef.current.src = backgroundMp3;
     backgroundAudioRef.current.preload = 'auto';
     
     backgroundAudioRef.current.addEventListener('error', (e) => {
@@ -85,7 +88,7 @@ const LuckyDraw = () => {
     });
     
     // Clap sound - PRELOAD sẵn
-    clapAudioRef.current = new Audio('/audio/clap.mp3');
+    clapAudioRef.current = new Audio(clap);
     clapAudioRef.current.loop = false;
     clapAudioRef.current.volume = 0.8;
     clapAudioRef.current.preload = 'auto';
@@ -129,7 +132,7 @@ const LuckyDraw = () => {
   
   // Trigger confetti
   const triggerConfetti = () => {
-    const duration = 5 * 1000;
+    const duration = 2 * 1000;
     const end = Date.now() + duration;
 
     const frame = () => {
@@ -197,7 +200,7 @@ const LuckyDraw = () => {
           console.error('❌ Error playing clap:', error);
           
           // Fallback: thử tạo audio mới nếu không play được
-          const newClap = new Audio('/audio/clap.mp3');
+          const newClap = new Audio(clap);
           newClap.volume = 0.8;
           newClap.play().catch(e => console.error('❌ Fallback also failed:', e));
         });
