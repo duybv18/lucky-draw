@@ -2,8 +2,8 @@ import { useState, useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import confetti from 'canvas-confetti';
 import './LuckyDraw.css';
-import backgroundMp3 from '/audio/background.mp3';
-import clap from '/audio/clap.mp3';
+import backgroundMp3 from '/public/audio/background.mp3';
+import clap from '/public/audio/clap.mp3';
 
 
 const LuckyDraw = () => {
